@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="event-header">
-      <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
+      <span class="eyebrow">@{{ event.time }} on {{ event.date | date }}</span>
       <h1 class="title">{{ event.title }}</h1>
       <h5>Organized by {{ event.organizer ? event.organizer.name : '' }}</h5>
       <h5>Category: {{ event.category }}</h5>
@@ -14,9 +14,9 @@
     <p>{{ event.description }}</p>
     <h2>
       Attendees
-      <span class="badge -fill-gradient">
-        {{ event.attendees ? event.attendees.length : 0 }}
-      </span>
+      <span class="badge -fill-gradient">{{
+        event.attendees ? event.attendees.length : 0
+      }}</span>
     </h2>
     <ul class="list-group">
       <li
@@ -31,17 +31,24 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-
 export default {
-  props: ['id'],
-  created() {
-    this.$store.dispatch('event/fetchEvent', this.id)
-  },
-  computed: mapState({
-    event: state => state.event.event
-  }),
-  methods: mapActions(['event', ['fetchEvent']]) //first param: NameSpace, second param: Actions to map
+  //remove vuex via getting props through router
+  props: {
+    event: {
+      type: Object,
+      required: true
+    }
+  }
+  // beforeRouteEnter(routeTo, routeFrom, next) {
+  //   NProgress.start()
+  //   //cannot access to 'this', so call action directly
+  //   store.dispatch('event/fetchEvent', routeTo.params.id).then(() => {
+  //     NProgress.done()
+  //     next()
+  //   })
+  // },
+
+  // methods: mapActions(['event', ['fetchEvent']]) //first param: NameSpace, second param: Actions to map
 }
 </script>
 

@@ -5,7 +5,8 @@ export const namespaced = true
 export const state = {
   events: [],
   eventTotal: 0,
-  event: {}
+  event: {},
+  perPage: 3
 }
 
 export const mutations = {
@@ -46,9 +47,9 @@ export const actions = {
         throw error
       })
   },
-  fetchEvents({ commit, dispatch }, { perPage, page }) {
+  fetchEvents({ commit, dispatch, state }, { page }) {
     //The payload in both Actions and Mutations can be a single variable OR an object
-    EventService.getEvents(perPage, page)
+    return EventService.getEvents(state.perPage, page)
       .then(response => {
         // console.log(response.headers['x-total-count'])
         commit('SET_EVENT_TOTAL', response.headers['x-total-count'])
@@ -62,23 +63,18 @@ export const actions = {
         dispatch('notification/add', notification, { root: true })
       })
   },
-  fetchEvent({ commit, getters, dispatch }, id) {
+  fetchEvent({ commit, getters }, id) {
     var event = getters.getEventById(id)
 
     if (event) {
       commit('SET_EVENT', event)
+      return event
     } else {
-      EventService.getEvent(id)
-        .then(response => {
-          commit('SET_EVENT', response.data)
-        })
-        .catch(error => {
-          const notification = {
-            type: 'error',
-            message: 'There was a prolem fetching event: ' + error.message
-          }
-          dispatch('notification/add', notification, { root: true })
-        })
+      //return for the callback on template
+      return EventService.getEvent(id).then(response => {
+        commit('SET_EVENT', response.data)
+        return response.data
+      })
     }
   }
 }

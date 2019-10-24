@@ -5676,6 +5676,11 @@ npm-run-path@^4.0.0:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/nprogress/download/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha1-y480xTIT2JVyP8urkH6UIq28r7E=
+
 nth-check@^1.0.2, nth-check@~1.0.1:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/nth-check/download/nth-check-1.0.2.tgz#b2bd295c37e3dd58a3bf0700376663ba4d9cf05c"
@@ -8371,6 +8376,11 @@ vuejs-datepicker@^1.6.2:
   version "1.6.2"
   resolved "https://registry.npm.taobao.org/vuejs-datepicker/download/vuejs-datepicker-1.6.2.tgz#83c1e8fd4108e7f1d01c061a7e344918f25e47ae"
   integrity sha1-g8Ho/UEI5/HQHAYafjRJGPJeR64=
+
+vuelidate@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.npm.taobao.org/vuelidate/download/vuelidate-0.7.4.tgz#5a0e54be09ac0192f1aa3387d74b92e0945bf8aa"
+  integrity sha1-Wg5UvgmsAZLxqjOH10uS4JRb+Ko=
 
 vuex@^3.0.1:
   version "3.1.1"
